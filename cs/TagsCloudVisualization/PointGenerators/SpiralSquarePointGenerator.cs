@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace TagsCloudVisualization;
+namespace TagsCloudVisualization.PointGenerators;
 
-public class SpiralSquarePointGenerator
+public class SpiralSquarePointGenerator : IPointGenerator
 {
     // Точки привязки для следующих прямоугольников
     private Point topLeft;

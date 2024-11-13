@@ -1,4 +1,4 @@
-﻿namespace TagsCloudVisualization;
+﻿namespace TagsCloudVisualization.PointGenerators;
 
 public enum Directions
 {

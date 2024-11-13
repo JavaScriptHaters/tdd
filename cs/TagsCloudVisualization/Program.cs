@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using TagsCloudVisualization.Layouters;
+using TagsCloudVisualization.Visualizers;
 
 namespace TagsCloudVisualization;
 

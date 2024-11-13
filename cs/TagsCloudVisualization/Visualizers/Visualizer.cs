@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 
-namespace TagsCloudVisualization;
+namespace TagsCloudVisualization.Visualizers;
 
-public class Visualizer
+public class Visualizer : IVisualizer
 {
     public Bitmap CreateBitmap(IEnumerable<Rectangle> rectangles, Size bitmapSize)
     {

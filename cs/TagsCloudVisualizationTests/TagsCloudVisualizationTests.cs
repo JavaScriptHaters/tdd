@@ -1,6 +1,6 @@
 using FluentAssertions;
 using System.Drawing;
-using TagsCloudVisualization;
+using TagsCloudVisualization.Layouters;
 
 namespace TagsCloudVisualizationTests;
 
