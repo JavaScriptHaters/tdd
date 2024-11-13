@@ -11,9 +11,9 @@ internal class Program
     private const int ImageWidth = 1920;
     private const int ImageHeight = 1080;
 
-    private const int RectanglesNumber = 100;
-    private const int MinRectangleSize = 20;
-    private const int MaxRectangleSize = 40;
+    private const int RectanglesNumber = 50;
+    private const int MinRectangleSize = 40;
+    private const int MaxRectangleSize = 70;
 
     private const double Radius = 1;
     private const double AngleOffset = 10;
