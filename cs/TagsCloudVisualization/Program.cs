@@ -34,17 +34,6 @@ internal class Program
                 random.Next(MinRectangleSize, MaxRectangleSize))))
             .ToArray();
 
-        //rectangles =
-        //[
-        //    cloudLayouter.PutNextRectangle(new Size(200, 120)),
-        //    cloudLayouter.PutNextRectangle(new Size(150, 300)),
-        //    cloudLayouter.PutNextRectangle(new Size(200, 50)),
-        //    cloudLayouter.PutNextRectangle(new Size(90, 100)),
-        //    cloudLayouter.PutNextRectangle(new Size(50, 50)),
-        //    cloudLayouter.PutNextRectangle(new Size(140, 50)),
-        //    cloudLayouter.PutNextRectangle(new Size(200, 50)),
-        //];
-
         var visualizer = new Visualizer();
         var bitmap = visualizer.CreateBitmap(rectangles, new Size(ImageWidth, ImageHeight));
         Directory.CreateDirectory(ImagesDirectory);

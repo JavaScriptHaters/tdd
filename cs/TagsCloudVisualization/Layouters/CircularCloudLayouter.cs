@@ -7,7 +7,6 @@ public class CircularCloudLayouter : ICloudLayouter
 {
     private Point center;
     private List<Rectangle> rectangles;
-    private int counter = 0;
     private CircularSpiralPointGenerator pointsGenerator;
 
     public CircularCloudLayouter(Point center)
@@ -22,11 +21,14 @@ public class CircularCloudLayouter : ICloudLayouter
 
     public void InitSpiral(double radius, double angleOffset)
     {
-        pointsGenerator = new CircularSpiralPointGenerator(radius, angleOffset, this.center);
+        pointsGenerator = new CircularSpiralPointGenerator(radius, angleOffset, center);
     }
 
     public Rectangle PutNextRectangle(Size rectangleSize)
     {
+        if (rectangleSize.Height <= 0 || rectangleSize.Width <= 0)
+            throw new ArgumentException("X or Y is negative!");
+
         Rectangle rectangle;
 
         do

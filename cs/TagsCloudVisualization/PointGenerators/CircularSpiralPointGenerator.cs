@@ -9,33 +9,33 @@ public class CircularSpiralPointGenerator : IPointGenerator
     private double angle = 0;
     private Point center;
 
-    public CircularSpiralPointGenerator(double radius, double angle, Point center)
+    public CircularSpiralPointGenerator(double radius, double angleOffset, Point center)
     {
         if (radius <= 0)
             throw new ArgumentException("radius must be greater than 0");
-        if (angle <= 0)
-            throw new ArgumentException("angle must be greater than 0");
+        if (angleOffset <= 0)
+            throw new ArgumentException("angleOffset must be greater than 0");
 
         this.radius = radius;
-        this.angleOffset = angle * Math.PI / 180;
+        this.angleOffset = angleOffset * Math.PI / 180;
         this.center = center;
     }
 
     public Point GetPoint()
     {
-        return TransferPolarToEuclideanPoint(this.center, this.angle);
+        return TransferPolarToEuclideanPoint();
     }
 
-    private Point TransferPolarToEuclideanPoint(Point spiralCenter, double angle)
+    private Point TransferPolarToEuclideanPoint()
     {
-        var radiusVector = (this.radius / (2 * Math.PI)) * angle;
+        var radiusVector = (radius / (2 * Math.PI)) * angle;
 
         var x = (int)Math.Round(
-            radiusVector * Math.Cos(angle) + spiralCenter.X);
+            radiusVector * Math.Cos(angle) + center.X);
         var y = (int)Math.Round(
-            radiusVector * Math.Sin(angle) + spiralCenter.Y);
+            radiusVector * Math.Sin(angle) + center.Y);
 
-        this.angle += angleOffset;
+        angle += angleOffset;
 
         return new Point(x, y);
     }
