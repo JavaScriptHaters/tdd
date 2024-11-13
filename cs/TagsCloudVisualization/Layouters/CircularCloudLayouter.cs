@@ -27,7 +27,7 @@ public class CircularCloudLayouter : ICloudLayouter
     public Rectangle PutNextRectangle(Size rectangleSize)
     {
         if (rectangleSize.Height <= 0 || rectangleSize.Width <= 0)
-            throw new ArgumentException("X or Y is negative!");
+            throw new ArgumentException("Height or Width is negative!");
 
         Rectangle rectangle;
 
