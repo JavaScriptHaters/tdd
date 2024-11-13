@@ -1,5 +1,5 @@
 ### 50 Прямоугольников
-![result](/Images/50_TagCloud.jpg)
+![result](https://i.imgur.com/nbMnER4.jpeg)
 ---
 ### 100 Прямоугольников
-![result1](/Images/100_TagCloud.jpg)
+![result1](https://i.imgur.com/l3GB61c.jpeg)
