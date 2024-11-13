@@ -4,5 +4,5 @@ namespace TagsCloudVisualization.PointGenerators;
 
 public interface IPointGenerator
 {
-    public Rectangle GetCurrentRectangle();
+    public Point GetPoint();
 }

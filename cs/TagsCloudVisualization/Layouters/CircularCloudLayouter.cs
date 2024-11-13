@@ -8,7 +8,7 @@ public class CircularCloudLayouter : ICloudLayouter
     private Point center;
     private List<Rectangle> rectangles;
     private int counter = 0;
-    private SpiralSquarePointGenerator pointsGenerator;
+    private CircularSpiralPointGenerator pointsGenerator;
 
     public CircularCloudLayouter(Point center)
     {
@@ -17,24 +17,34 @@ public class CircularCloudLayouter : ICloudLayouter
 
         this.center = center;
         rectangles = new List<Rectangle>();
-        pointsGenerator = new SpiralSquarePointGenerator();
+        
+    }
+
+    public void InitSpiral(double radius, double angleOffset)
+    {
+        pointsGenerator = new CircularSpiralPointGenerator(radius, angleOffset, this.center);
     }
 
     public Rectangle PutNextRectangle(Size rectangleSize)
     {
-        if (rectangleSize.Height <= 0 || rectangleSize.Width <= 0)
-            throw new ArgumentException("X or Y is negative!");
+        Rectangle rectangle;
 
-        if (counter == 0)
+        do
         {
-            counter++;
-            pointsGenerator.InitFirstRectangle(center, rectangleSize);
-            return pointsGenerator.GetCurrentRectangle();
-        }
-        else
-        {
-            pointsGenerator.CalculateRectangle(rectangleSize);
-            return pointsGenerator.GetCurrentRectangle();
-        }
+            var rectangleCenterPos = pointsGenerator.GetPoint();
+            rectangle = CreateRectangleWithCenter(rectangleCenterPos, rectangleSize);
+        } 
+        while (rectangles.Any(rectangle.IntersectsWith));
+
+        rectangles.Add(rectangle);
+
+        return rectangle;
+    }
+
+    private static Rectangle CreateRectangleWithCenter(Point center, Size rectangleSize)
+    {
+        var x = center.X - rectangleSize.Width / 2;
+        var y = center.Y - rectangleSize.Height / 2;
+        return new Rectangle(x, y, rectangleSize.Width, rectangleSize.Height);
     }
 }
