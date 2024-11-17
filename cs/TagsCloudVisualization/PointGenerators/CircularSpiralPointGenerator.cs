@@ -23,11 +23,6 @@ public class CircularSpiralPointGenerator : IPointGenerator
 
     public Point GetPoint()
     {
-        return TransferPolarToEuclideanPoint();
-    }
-
-    private Point TransferPolarToEuclideanPoint()
-    {
         var radiusVector = (radius / (2 * Math.PI)) * angle;
 
         var x = (int)Math.Round(

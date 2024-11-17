@@ -5,9 +5,11 @@ namespace TagsCloudVisualization.Layouters;
 
 public class CircularCloudLayouter : ICloudLayouter
 {
-    private Point center;
-    private List<Rectangle> rectangles;
-    private CircularSpiralPointGenerator pointsGenerator;
+    private readonly double defaultRadius = 1;
+    private readonly double defaultAngleOffset = 10;
+    private readonly Point center;
+    private readonly List<Rectangle> rectangles;
+    private readonly CircularSpiralPointGenerator pointsGenerator;
 
     public CircularCloudLayouter(Point center)
     {
@@ -16,11 +18,18 @@ public class CircularCloudLayouter : ICloudLayouter
 
         this.center = center;
         rectangles = new List<Rectangle>();
-        
+
+        pointsGenerator = new CircularSpiralPointGenerator(defaultRadius, defaultAngleOffset, center);
     }
 
-    public void InitSpiral(double radius, double angleOffset)
+    public CircularCloudLayouter(Point center, double radius, double angleOffset)
     {
+        if (center.X < 0 || center.Y < 0)
+            throw new ArgumentException("X or Y must be positive");
+
+        this.center = center;
+        rectangles = new List<Rectangle>();
+
         pointsGenerator = new CircularSpiralPointGenerator(radius, angleOffset, center);
     }
 
@@ -34,7 +43,7 @@ public class CircularCloudLayouter : ICloudLayouter
         do
         {
             var rectangleCenterPos = pointsGenerator.GetPoint();
-            rectangle = CreateRectangleWithCenter(rectangleCenterPos, rectangleSize);
+            rectangle = CreateRectangle(rectangleCenterPos, rectangleSize);
         } 
         while (rectangles.Any(rectangle.IntersectsWith));
 
@@ -43,7 +52,7 @@ public class CircularCloudLayouter : ICloudLayouter
         return rectangle;
     }
 
-    private static Rectangle CreateRectangleWithCenter(Point center, Size rectangleSize)
+    private static Rectangle CreateRectangle(Point center, Size rectangleSize)
     {
         var x = center.X - rectangleSize.Width / 2;
         var y = center.Y - rectangleSize.Height / 2;
