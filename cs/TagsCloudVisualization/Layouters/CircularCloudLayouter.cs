@@ -8,7 +8,7 @@ public class CircularCloudLayouter : ICloudLayouter
     private readonly double defaultRadius = 1;
     private readonly double defaultAngleOffset = 10;
     private readonly Point center;
-    private readonly List<Rectangle> rectangles;
+    public readonly List<Rectangle> rectangles;
     private readonly CircularSpiralPointGenerator pointsGenerator;
 
     public CircularCloudLayouter(Point center)
