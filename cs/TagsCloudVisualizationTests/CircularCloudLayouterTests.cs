@@ -15,8 +15,6 @@ public class CircularCloudLayouterTests
     private const string ImagesDirectory = "TestImages";
 
     private static readonly Point OptimalCenter = new(0, 0);
-    private readonly double OptimalRadius = 1;
-    private readonly double OptimalAngleOffset = 0.5;
 
     [TearDown]
     public void TearDown()
@@ -95,7 +93,7 @@ public class CircularCloudLayouterTests
     public void TagsCloud_ShouldBeShapeOfCircularCloud_WhenOptimalParameters()
     {
         var rectanglesNumber = 1000;
-        var circularCloudLayouter = new CircularCloudLayouter(OptimalCenter, OptimalRadius, OptimalAngleOffset);
+        var circularCloudLayouter = new CircularCloudLayouter(OptimalCenter);
 
         rectangles = circularCloudLayouter.GenerateCloud(rectanglesNumber, 10, 25);
         var layoutSize = GetLayoutSize();
@@ -122,7 +120,7 @@ public class CircularCloudLayouterTests
     public void TagsCloud_ShouldBeDense_WhenOptimalParameters()
     {
         var rectanglesNumber = 1000;
-        var circularCloudLayouter = new CircularCloudLayouter(OptimalCenter, OptimalRadius, OptimalAngleOffset);
+        var circularCloudLayouter = new CircularCloudLayouter(OptimalCenter);
         rectangles = circularCloudLayouter.GenerateCloud(rectanglesNumber, 10, 10);
 
         var expectedRectanglesArea = (double)rectanglesNumber * 10 * 10;

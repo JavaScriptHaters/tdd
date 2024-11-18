@@ -6,7 +6,7 @@ namespace TagsCloudVisualization.Layouters;
 public class CircularCloudLayouter : ICloudLayouter
 {
     private const double DefaultRadius = 1;
-    private const double DefaultAngleOffset = 10;
+    private const double DefaultAngleOffset = 0.5;
     private readonly Point center;
     public readonly List<Rectangle> rectangles;
     private readonly CircularSpiralPointGenerator pointsGenerator;

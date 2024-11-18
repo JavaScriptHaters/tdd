@@ -34,7 +34,6 @@ public class CircularSpiralPointGeneratorTests
     public void GetPoint_ReturnCorrectPoints()
     {
         var spiral = new CircularSpiralPointGenerator(3, 100, DefaultCenter);
-        var actualPoins = new Point[6];
         Point[] correctPoints =
         {
             new Point(0, 0),
