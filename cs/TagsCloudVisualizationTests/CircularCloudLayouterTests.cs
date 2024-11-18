@@ -11,7 +11,6 @@ namespace TagsCloudVisualizationTests;
 [TestFixture]
 public class CircularCloudLayouterTests
 {
-    private CircularCloudLayouter circularCloudLayouter;
     private Rectangle[] rectangles;
     private const string ImagesDirectory = "TestImages";
 
@@ -39,7 +38,7 @@ public class CircularCloudLayouterTests
     [Test]
     public void CircularCloudLayouter_WhenCorrectArgs_NotThrowArgumentException()
     {
-        Action act = () => new CircularCloudLayouter(new Point(5, 15));
+        var act = () => new CircularCloudLayouter(new Point(5, 15));
 
         act.Should().NotThrow<ArgumentException>();
     }
@@ -49,7 +48,7 @@ public class CircularCloudLayouterTests
     [TestCase(5, -5, TestName = "WithNegativeY")]
     public void CircularCloudLayouter_WhenIncorrectArgs_ThrowArgumentException(int x, int y)
     {
-        Action act = () => new CircularCloudLayouter(new Point(x, y));
+        var act = () => new CircularCloudLayouter(new Point(x, y));
 
         act.Should().Throw<ArgumentException>();
     }
@@ -60,9 +59,9 @@ public class CircularCloudLayouterTests
     [TestCase(0, 0, TestName = "WithZeroWidthAndHeight")]
     public void PutNextRectangle_WhenIncorrectArgs_ThrowArgumentException(int width, int height)
     {
-        circularCloudLayouter = new CircularCloudLayouter(new Point(600, 600), 1, 90);
+        var circularCloudLayouter = new CircularCloudLayouter(new Point(600, 600), 1, 90);
 
-        Action act = () => circularCloudLayouter.PutNextRectangle(new Size(width, height));
+        var act = () => circularCloudLayouter.PutNextRectangle(new Size(width, height));
 
         act.Should().Throw<ArgumentException>();
     }
@@ -71,14 +70,14 @@ public class CircularCloudLayouterTests
     public void PutNextRectangle_ShouldReturnRectanglesWithoutIntersections()
     {
         var rectanglesNumber = 100;
-        circularCloudLayouter = new CircularCloudLayouter(OptimalCenter, OptimalRadius, OptimalAngleOffset);
+        var circularCloudLayouter = new CircularCloudLayouter(OptimalCenter);
 
         rectangles = circularCloudLayouter.GenerateCloud(rectanglesNumber);
 
         IsIntersectionBetweenRectangles(rectangles).Should().BeFalse();
     }
 
-    private bool IsIntersectionBetweenRectangles(Rectangle[] rectangles)
+    private static bool IsIntersectionBetweenRectangles(Rectangle[] rectangles)
     {
         for (var i = 0; i < rectangles.Length; i++)
         {
@@ -96,7 +95,7 @@ public class CircularCloudLayouterTests
     public void TagsCloud_ShouldBeShapeOfCircularCloud_WhenOptimalParameters()
     {
         var rectanglesNumber = 1000;
-        circularCloudLayouter = new CircularCloudLayouter(OptimalCenter, OptimalRadius, OptimalAngleOffset);
+        var circularCloudLayouter = new CircularCloudLayouter(OptimalCenter, OptimalRadius, OptimalAngleOffset);
 
         rectangles = circularCloudLayouter.GenerateCloud(rectanglesNumber, 10, 25);
         var layoutSize = GetLayoutSize();
@@ -123,7 +122,7 @@ public class CircularCloudLayouterTests
     public void TagsCloud_ShouldBeDense_WhenOptimalParameters()
     {
         var rectanglesNumber = 1000;
-        circularCloudLayouter = new CircularCloudLayouter(OptimalCenter, OptimalRadius, OptimalAngleOffset);
+        var circularCloudLayouter = new CircularCloudLayouter(OptimalCenter, OptimalRadius, OptimalAngleOffset);
         rectangles = circularCloudLayouter.GenerateCloud(rectanglesNumber, 10, 10);
 
         var expectedRectanglesArea = (double)rectanglesNumber * 10 * 10;

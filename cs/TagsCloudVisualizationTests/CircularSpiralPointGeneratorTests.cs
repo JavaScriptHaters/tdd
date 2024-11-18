@@ -8,8 +8,6 @@ namespace TagsCloudVisualizationTests;
 public class CircularSpiralPointGeneratorTests
 {
     private static readonly Point DefaultCenter = new(0, 0);
-    private readonly double defaultRadius = 1;
-    private readonly double defaultAngleOffset = 10;
 
     [TestCase(-1, 1, TestName = "WithNegativeRadius")]
     [TestCase(0, 1, TestName = "WithZeroRadius")]
@@ -46,13 +44,11 @@ public class CircularSpiralPointGeneratorTests
             new Point(3, 2),
             new Point(-3, 3)
         };
-        var pointNumber = correctPoints.Length;
 
-        for (var i = 0; i < pointNumber; i++)
-        {
-            actualPoins[i] = spiral.GetPoint();
-        }
+        var actualPoints = Enumerable.Range(1, correctPoints.Length)
+            .Select(_ => spiral.GetPoint())
+            .ToArray();
 
-        actualPoins.Should().BeEquivalentTo(correctPoints);
+        actualPoints.Should().BeEquivalentTo(correctPoints);
     }
 }
