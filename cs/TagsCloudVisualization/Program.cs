@@ -19,10 +19,8 @@ internal class Program
     {
         var center = new Point(ImageWidth / 2, ImageHeight / 2);
         var cloudLayouter = new CircularCloudLayouter(center);
-        var random = new Random();
-        var rectangles = new Rectangle[RectanglesNumber];
 
-        rectangles = cloudLayouter.GenerateCloud(RectanglesNumber);
+        var rectangles = cloudLayouter.GenerateCloud(RectanglesNumber);
 
         var visualizer = new Visualizer();
         var bitmap = visualizer.CreateBitmap(rectangles, new Size(ImageWidth, ImageHeight));

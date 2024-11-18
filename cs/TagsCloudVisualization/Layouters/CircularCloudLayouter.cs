@@ -5,22 +5,13 @@ namespace TagsCloudVisualization.Layouters;
 
 public class CircularCloudLayouter : ICloudLayouter
 {
-    private readonly double defaultRadius = 1;
-    private readonly double defaultAngleOffset = 10;
+    private const double DefaultRadius = 1;
+    private const double DefaultAngleOffset = 10;
     private readonly Point center;
     public readonly List<Rectangle> rectangles;
     private readonly CircularSpiralPointGenerator pointsGenerator;
 
-    public CircularCloudLayouter(Point center)
-    {
-        if (center.X < 0 || center.Y < 0)
-            throw new ArgumentException("X or Y must be positive");
-
-        this.center = center;
-        rectangles = new List<Rectangle>();
-
-        pointsGenerator = new CircularSpiralPointGenerator(defaultRadius, defaultAngleOffset, center);
-    }
+    public CircularCloudLayouter(Point center) : this(center, DefaultRadius, DefaultAngleOffset) {}
 
     public CircularCloudLayouter(Point center, double radius, double angleOffset)
     {
